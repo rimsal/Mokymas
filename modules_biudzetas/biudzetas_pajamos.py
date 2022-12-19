@@ -4,18 +4,17 @@ from modules_biudzetas.klases_irasas import PajamuIrasas, IslaiduIrasas
 import pickle
 class Biudzetas:
     def __init__(self):
-        self.zurnalas = self.nuskaityti_is_failo(
+        self.zurnalas = self.nuskaityti_is_failo()
 
     def prideti_pajamu_irasa(self, suma, siuntejas, info):
         irasas = PajamuIrasas(suma, siuntejas, info)
         self.zurnalas.append(irasas)
-        self.irasyti_i_faila()
+        self.irasyti_i_failas()
 
     def prideti_islaidu_irasa(self, suma, atsiskaitymo_budas, isigyta_preke_paslauga, info):
         irasas = IslaiduIrasas(suma, atsiskaitymo_budas, isigyta_preke_paslauga, info)
         self.zurnalas.append(irasas)
-         self.irasyti_i_faila()
-
+        self.irasyti_i_failas()
 
     def gauti_balansa(self):
         bendrasuma = 0
@@ -38,7 +37,7 @@ class Biudzetas:
             zurnalas = []
         return zurnalas
 
-    def irasyti_i_faila(self):
+    def irasyti_i_failas(self):
         with open("biudzetas.pkl", 'wb') as file:
-            pickle.dump(self.zurnalas)
+            pickle.dump(self.zurnalas, file)
 
